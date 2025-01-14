@@ -1,0 +1,420 @@
+:root {
+    --text: #ededed;
+    --bg: #171717;
+    --bg2: #444444;
+    --red: #DA0037;
+}
+
+/* BEGIN index.php */
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+    overflow-x: hidden;
+}
+
+h1:hover, button:hover {
+    cursor: pointer;
+}
+
+x {
+    border-bottom: 3px solid var(--red);
+}
+
+y {
+    border-bottom: 3px solid var(--bg2);
+}
+
+/* BEGIN mobile view */
+
+@media only screen and (max-width: 1000px) {
+
+    #infoContainer {
+        position: absolute;
+        width: 90%;
+        height: 85%;
+        left: 5%;
+        text-align: center;
+        background-color: var(--bg);
+        box-shadow: 2px 2px 20px 4px var(--bg2);
+        z-index: 2;
+        border-radius: 5px;
+        border: 2px solid var(--red);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    #infoContainer h3 {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    
+    #infoContainer a {
+        color: var(--text);
+    }
+    #infoContainer li {
+        padding-bottom: 10px;
+    }
+    #infoContainer button {
+        margin: 10px 30px;
+        background-color: var(--bg2);
+        border: none;
+        border-radius: 5px;
+        color: var(--text);
+        font-size: 30px;
+    }
+
+    #videoData h2 {
+        font-size: 30px;
+        position: relative;
+    }
+    #videoData select {
+        font-size: 3%;
+    }
+}
+
+/* BEGIN desktop view */
+
+@media only screen and (min-width: 1000px) {
+    #infoContainer {
+        position: absolute;
+        width: 500px;
+        height: 550px;
+        left: calc(50% - 250px);
+        text-align: center;
+        background-color: var(--bg);
+        box-shadow: 2px 2px 20px 4px var(--bg2);
+        z-index: 2;
+        border-radius: 5px;
+        border: 2px solid var(--red);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #infoContainer h3 {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    #infoContainer a {
+        color: var(--text);
+    }
+    #infoContainer li {
+        padding-bottom: 10px;
+    }
+    #infoContainer button {
+        margin: 10px 0px;
+        background-color: var(--bg2);
+        border: none;
+        border-radius: 5px;
+        color: var(--text);
+        font-size: 30px;
+    }    
+    
+    #videoData h2 {
+        font-size: 25px;
+        position: relative;
+        display: inline;
+        margin: 0px calc(100vh / 30);
+    }
+
+}
+
+
+#infoButton {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-color: var(--bg);
+    color: var(--red);
+    outline: none !important;
+    border: 2px solid var(--bg2);
+    border-radius: 50px;
+    font-size: 18px;
+}
+
+#mostViewedDisplay {
+    background: none;
+    font-family: 'Raleway', sans-serif;
+    color: var(--text);
+    font-size: 20px;
+    outline: none !important;
+    border: none;
+}
+
+option {
+    background-color: var(--bg2);
+}
+
+#whiteoutContainer {
+    z-index: 69420;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    transition: 1s;
+    width: 100%;
+    height: 110%;
+    background-color: var(--bg2);
+}
+
+#header {
+    width: 400px;
+    text-align: center;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    margin-left: -200px;
+}
+
+#header h1 {
+    font-size: 50px;
+}
+
+#header h2 {
+    font-size: 25px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+#searchContainer {
+    text-align: center;
+    margin-top: 110px;
+}
+
+#searchContainer h2 {
+    margin-top: -50px;
+}
+
+#liveTV {
+    position: relative;
+    top: 30px;
+    font-size: 25px;
+    color: var(--text);
+    background-color: var(--bg);
+    border: 2px solid var(--red);
+    outline: none !important;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+#liveTV:hover {
+    cursor: pointer;
+    background-color: var(--bg2);
+    color: var(--text);
+}
+
+#searchBar {
+    position: relative;
+    margin-top: 50px;
+    font-size: 25px;
+    height: 40px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    border: none;
+    border-bottom: 4px solid var(--red);
+}
+
+
+#bodyContainer {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+#bodyContainer h2 {
+    margin-bottom: 50px;
+}
+
+/* BEGIN search.php */
+
+.movie {
+    position: relative;
+    border: 2px solid var(--red);
+    width: 170px;
+    left: 50%;
+    margin-left: -85px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 5px var(--bg2);
+}
+
+.movieTitle {
+    font-size: 20px;
+    color: var(--text);
+}
+
+
+#result {
+    color: var(--text);
+    font-size: 35px;
+}
+
+#resultContainer, #resultHeader {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+#resultContainer {
+    margin-top: 50px;
+}
+
+#resultHeader h1 {
+    font-size: 50px;
+}
+
+#resultContainer h2 {
+    margin-bottom: 100px;
+    font-size: 30px;
+}
+
+#resultSearchBar {
+    position: sticky;
+    margin-top: 25px;
+    font-size: 25px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    border: none;
+    border-bottom: 4px solid var(--red);
+}
+
+/* BEGIN player.php */
+
+#headerContainer {
+    background-color: var(--bg);
+    text-align: center;
+    height: 180px;
+    width: 100%;
+    left: 0px;
+    top: -10px;
+}
+
+#headerContainer #resultSearchBar {
+    position: relative;
+    top: 20px;
+}
+
+video, #loader {
+    box-shadow: 0px 0px 15px 8px var(--bg2);
+}
+
+#mainMessage {
+    padding-top: 50px;
+}
+
+#header {
+    position: relative;
+    top: 10px;
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+#playerContainer {
+    position: relative;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#playerLink {
+    color: var(--text);
+    font-size: 40px;
+}
+
+#title {
+    position: relative;
+    font-size: 40px;
+    margin-top: 0px;
+}
+
+#videoData {
+    margin-top: 50px;
+}
+
+#videoData input {
+    background: none;
+    font-family: 'Raleway', sans-serif;
+    color: var(--text);
+    font-size: 30px;
+    width: 30px;
+    outline: none !important;
+    border: none;
+    text-align: right;
+}
+
+#videoData button {
+    background: var(--bg);
+    font-family: 'Raleway', sans-serif;
+    color: var(--text);
+    font-size: 25px;
+    outline: none !important;
+    border: 2px solid var(--red);
+    border-radius: 3px;
+    margin-bottom: 100px;
+}
+
+@media only screen and (max-width: 1000px) {
+    #video {
+        width: 80%;
+        height: 20%;
+    }
+
+    #player div {
+        position: relative;
+        background-color: black; 
+        width: 80%;
+        height: 20%;
+        left: 10%;
+    }
+
+
+}
+@media only screen and (min-width: 1000px) {
+    #video {
+        width: 640px;
+        height: 365px;
+    }
+
+    #player div {
+        position: relative;
+        background-color: black; 
+        width: 640px;
+        height: 360px;
+        left: 50%;
+        margin-left: -320px;
+    }    
+
+}
+
+
+/* prettify the desktop scroll bar */
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: #444;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0px 0px 0px 30px var(--bg) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+}
