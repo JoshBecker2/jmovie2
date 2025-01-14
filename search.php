@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DB2CNDXXV"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-4DB2CNDXXV');
-	</script> -->
-
 	<meta charset="utf-8">
-	<title>Results | jmovie</title>
+	<title>Results | JMovie</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="No ads, no virus, j movie.">
-	<meta name="keywords" content="free movies, movie, tv, free, joshbdev">
+	<meta name="description" content="No Ads, No Virus, J Movie.">
+	<meta name="keywords" content="free movies, movie, tv, free, joshbdev, no ads, ad free, free tv, live tv">
 	<meta name="author" content="joshbdev.com">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,8 +22,8 @@
 			<br><button type="button" id="liveTV" onclick="toggleLiveTV()">Live TV</button>
 		</form>
 	</div>
-	<div id="resultContainer"> <!-- && move scripts to .min.js files?? -->
-		<script> // search.js
+	<div id="resultContainer">
+		<script>
 				const urlParams = new URLSearchParams(document.location.search);
 				const container = document.getElementById("resultContainer");
 
@@ -41,23 +32,23 @@
 				query = query.toLowerCase();
 				
 				if (sessionStorage.getItem("liveTV") == "false") {
-					fetch('http://159.203.158.37:8080/https://www.themoviedb.org/search?query=' + query + '&language=en-us')
+					fetch('http://serverip:8080/https://www.themoviedb.org/search?query=' + query + '&language=en-us')
 					.then(response => {
-						return response.text()
+						return response.text();
 					}).then(html => {
-						const parser = new DOMParser()
-						const doc = parser.parseFromString(html, "text/html")
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, "text/html");
 						const cards = doc.getElementsByClassName('card v4 tight');
 						results = [];
 						for (i = 0; i < cards.length; i++) {
 							try {
 								link = cards.item(i).getElementsByClassName('result')[0].href;
-								base = document.location.origin + "/" // CHANGE  
+								base = document.location.origin + "/";
 								type = link.substring(base.length, link.indexOf("/", base.length + 1));
 								tmdbid = link.substring(base.concat(type).length + 1, link.indexOf("-"));
 								title = cards.item(i).getElementsByTagName("img")[0].alt;
 								poster = cards.item(i).getElementsByTagName("img")[0].src;
-								// filter out the bs
+
 								if (title.toLowerCase().includes(query.toLowerCase()))
 									results.push([title, tmdbid, type, poster]);								
 							} catch {
@@ -65,7 +56,6 @@
 							}
 						}
 						
-						// sort here
 						for (let i = 0; i < results.length; i++)
 							for (let j = 0; j < results.length - 1 - i; j++)
 								if (results[j][0].length > results[j + 1][0].length)
@@ -97,26 +87,26 @@
 				} else {
 					fetch('https://iptv-org.github.io/api/channels.json')
 					.then(response => {
-						return response.text()
+						return response.text();
 					}).then(html => {
-						results = []
-						channelIDs = []
+						results = [];
+						channelIDs = [];
 						response = JSON.parse(html);
-						response.forEach(show => { // search for m3u8s
+						response.forEach(show => {
 							if (show['name'].toLowerCase().includes(query.toLowerCase())) {
 								results.push(show);
-								channelIDs.push(show['id'])
+								channelIDs.push(show['id']);
 							}
 						});
 						fetch('https://iptv-org.github.io/api/streams.json')
 						.then(response => {
-							return response.text()
+							return response.text();
 						}).then(html => {
-							output = [] // output with m3u8 links matching search results
+							output = []
 							response = JSON.parse(html);
 							response.forEach(show => {
 								if (channelIDs.includes(show['channel']) && show['url'].includes(".m3u8")) {
-									res = results[channelIDs.indexOf(show['channel'])]
+									res = results[channelIDs.indexOf(show['channel'])];
 									if (res['city'] == null)
 										res['city'] = "Not Found!";
 
@@ -149,7 +139,7 @@
 		</script>
 	</div>
 
-	<script> // main.js
+	<script>
 		function loadHome() {
 			if (sessionStorage.getItem("liveTV") == "true")
 				document.getElementById("liveTV").style.backgroundColor = "var(--bg2)";
@@ -161,6 +151,7 @@
 				document.getElementById("whiteoutContainer").style.zIndex = "-1";
 			}, 400);
 		}
+
 		function toggleLiveTV() {
 			if (sessionStorage.getItem("liveTV") == "true") {
 				sessionStorage.setItem("liveTV", "false");
@@ -169,7 +160,6 @@
 				sessionStorage.setItem("liveTV", "true");
 				document.getElementById("liveTV").style.backgroundColor = "var(--bg2)";
 			}
-
 		}
 	</script>
 	<h2 style="text-align: center;">If you couldn't find what you're looking for,<br> try refining your search.</h2>

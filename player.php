@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DB2CNDXXV"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-4DB2CNDXXV');
-	</script>
- -->
 	<meta charset="utf-8">
-	<title>Player | jmovie</title>
+	<title>Player | JMovie</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="No ads, no virus, j movie.">
-	<meta name="keywords" content="free movies, movie, tv, free, joshbdev">
+	<meta name="description" content="No Ads, No Virus, J Movie.">
+	<meta name="keywords" content="free movies, movie, tv, free, joshbdev, no ads, ad free, free tv, live tv">
 	<meta name="author" content="joshbdev.com">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,11 +16,10 @@
 <body>
 	<div id="whiteoutContainer">
 		<script type="text/javascript">
-				// fade effect
-				setTimeout(function effect() {
-					document.getElementById("whiteoutContainer").style.backgroundColor = "transparent";
-					document.getElementById("whiteoutContainer").style.zIndex = "-1";
-				}, 250);
+			setTimeout(function effect() {
+				document.getElementById("whiteoutContainer").style.backgroundColor = "transparent";
+				document.getElementById("whiteoutContainer").style.zIndex = "-1";
+			}, 250);
 		</script>
 	</div>
 	<div id="headerContainer">
@@ -97,15 +87,14 @@
 
 			async function getm3u8(tmdbid, type, s, e) {
 				if (type == "live") // dont you fucking dare. i will find you.
-					return "http://159.203.158.37:8080/" + urlParams.get("url");
+					return "http://serverip:8080/" + urlParams.get("url");
 				else if (type == "movie")
-					ENDPOINT = "http://159.203.158.37:5000/api/movie/" + tmdbid;
+					ENDPOINT = "http://serverip:5000/api/movie/" + tmdbid;
 				else if (type == "tv")
-					ENDPOINT = "http://159.203.158.37:5000/api/show/" + s + "/" + e +"/"+tmdbid;
+					ENDPOINT = "http://serverip:5000/api/show/" + s + "/" + e +"/"+tmdbid;
 				try {
 					const call = await fetch(ENDPOINT);
 					if (!call.ok) {
-						// change the loading things content to an error message?
 						document.getElementById('mainMessage').innerHTML = "Failed to get the video!";
 						document.getElementById('smallMessage').innerHTML = "Usually refreshing works, if not, try coming back again later.<br><br>Sorry!";
 						document.getElementById('loader').style.boxShadow = "0px 0px 15px 8px var(--red)";
@@ -125,7 +114,6 @@
 			}
 
 			function addHistory() {
-				// add to localStorage
 				type = urlParams.get("type");
 				if (type == "live")
 					id = urlParams.get("url");
@@ -135,7 +123,7 @@
 				newView = [urlParams.get("title"),urlParams.get("poster"),urlParams.get("type"),id];
 				viewed = localStorage.getItem("viewed");
 				if (viewed == null)
-					localStorage.setItem("viewed", JSON.stringify([newView]))
+					localStorage.setItem("viewed", JSON.stringify([newView]));
 				else {
 					his = JSON.parse(viewed);
 					seen = false;
@@ -145,15 +133,14 @@
 						}
 					});
 					if (his.length == 10) {
-						his.reverse()
-						his.pop()
-						his.reverse()
+						his.reverse();
+						his.pop();
+						his.reverse();
 					}
 					his.push(newView);
 					localStorage.setItem("viewed", JSON.stringify(his));
 				}
 			}
-
 		</script>
 	</div>
 </body>

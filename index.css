@@ -69,9 +69,6 @@ y {
         font-size: 30px;
         position: relative;
     }
-    #videoData select {
-        font-size: 3%;
-    }
 }
 
 /* BEGIN desktop view */
@@ -121,7 +118,6 @@ y {
 
 }
 
-
 #infoButton {
     position: absolute;
     left: 10px;
@@ -141,10 +137,6 @@ y {
     font-size: 20px;
     outline: none !important;
     border: none;
-}
-
-option {
-    background-color: var(--bg2);
 }
 
 #whiteoutContainer {
@@ -217,7 +209,6 @@ img {
     border: none;
     border-bottom: 4px solid var(--red);
 }
-
 
 #bodyContainer {
     position: relative;
@@ -394,7 +385,6 @@ video, #loader {
     }    
 
 }
-
 
 /* prettify the desktop scroll bar */
 
