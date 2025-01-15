@@ -18,9 +18,9 @@ def getSource(url):
         with sync_playwright() as pw:
                 browser = pw.firefox.launch()
                 page = browser.new_page()
-                page.set_default_timeout(5000)
+                page.set_default_timeout(15000)
                 page.goto(url)
-                sleep(4)
+                sleep(8)
                 try:
                         content = page.content()
                         start = content.index("<source src=\"") + len("<source src=\"")

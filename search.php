@@ -23,6 +23,9 @@
 		</form>
 	</div>
 	<div id="resultContainer">
+		<div id="searchLoader">
+			<h1>Loading titles...</h1>
+		</div>
 		<script>
 				const urlParams = new URLSearchParams(document.location.search);
 				const container = document.getElementById("resultContainer");
@@ -32,7 +35,7 @@
 				query = query.toLowerCase();
 				
 				if (sessionStorage.getItem("liveTV") == "false") {
-					fetch('http://serverip:8080/https://www.themoviedb.org/search?query=' + query + '&language=en-us')
+					fetch('http://server_ip:8080/https://www.themoviedb.org/search?query=' + query + '&language=en-us')
 					.then(response => {
 						return response.text();
 					}).then(html => {
@@ -48,8 +51,7 @@
 								tmdbid = link.substring(base.concat(type).length + 1, link.indexOf("-"));
 								title = cards.item(i).getElementsByTagName("img")[0].alt;
 								poster = cards.item(i).getElementsByTagName("img")[0].src;
-
-								if (title.toLowerCase().includes(query.toLowerCase()))
+								if (checkTitle(title, query))
 									results.push([title, tmdbid, type, poster]);								
 							} catch {
 								console.error("Failed to load metadata for title");
@@ -60,7 +62,8 @@
 							for (let j = 0; j < results.length - 1 - i; j++)
 								if (results[j][0].length > results[j + 1][0].length)
 									[results[j], results[j + 1]] = [results[j + 1], results[j]];
-
+						
+						document.getElementById("searchLoader").remove();
 						results.forEach(res => {
 							if (res[2] == "movie")
 								block = `
@@ -136,6 +139,13 @@
 						console.error(error);
 					});
 				}
+
+
+				function checkTitle(a, b) {
+					a = a.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\W/g, "").toLowerCase();
+					b = b.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\W/g, "").toLowerCase();					
+					return a.includes(b);
+				}
 		</script>
 	</div>
 
@@ -162,6 +172,8 @@
 			}
 		}
 	</script>
-	<h2 style="text-align: center;">If you couldn't find what you're looking for,<br> try refining your search.</h2>
+	<h2 style="text-align: center;">If you couldn't find what you're looking for,<br> try changing your key words.
+	<span style="font-size: 15px;"><br><br><br>Help support operating costs & improvements: <a href="https://cash.app/$jmovie69" target="_blank" style="color:var(--text);">$JMOVIE69</a></span>
+	</h2>
 </body>
 </html>

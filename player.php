@@ -57,13 +57,15 @@
 			}
 			
 			async function changeVid() {
-				loadVid(urlParams.get("type"), document.getElementById("seasonSelect").value,
-				document.getElementById("episodeSelect").value);
+				loadVid(urlParams.get("type"), document.getElementById("seasonSelect").value.trim(),
+				document.getElementById("episodeSelect").value.trim());
 			}
 
 			async function loadVid(type, s, e) {
+				document.getElementById('mainMessage').innerHTML = "Loading your <i>ad-free</i> experience...";
+				document.getElementById('smallMessage').innerHTML = "Please be patient!";
+				document.getElementById('loader').style.boxShadow = "0px 0px 10px 5px var(--bg2)";
 				document.getElementById('loader').style.display = "block";
-				document.getElementById('loader').style.boxShadow = "";
 				document.getElementById('video').style.display = "none";
 				if (Hls.isSupported()) {
 					var video = document.getElementById('video');
@@ -81,24 +83,24 @@
 					document.getElementById('mainMessage').innerHTML = "HLS Media Support Not Found!";
 					document.getElementById('smallMessage').innerHTML = "Try again with a browser that supports the necessary scripts.<br><br>Sorry!";
 					document.getElementById('loader').style.boxShadow = "0px 0px 15px 8px var(--red)";
-					document.getElementById('video').remove();
+					document.getElementById('video').style.display = "none";
 				}
 			}
 
 			async function getm3u8(tmdbid, type, s, e) {
 				if (type == "live") // dont you fucking dare. i will find you.
-					return "http://serverip:8080/" + urlParams.get("url");
+					return "http://server_ip:8080/" + urlParams.get("url");
 				else if (type == "movie")
-					ENDPOINT = "http://serverip:5000/api/movie/" + tmdbid;
+					ENDPOINT = "http://server_ip:5000/api/movie/" + tmdbid;
 				else if (type == "tv")
-					ENDPOINT = "http://serverip:5000/api/show/" + s + "/" + e +"/"+tmdbid;
+					ENDPOINT = "http://server_ip:5000/api/show/" + s + "/" + e +"/"+tmdbid;
 				try {
 					const call = await fetch(ENDPOINT);
 					if (!call.ok) {
 						document.getElementById('mainMessage').innerHTML = "Failed to get the video!";
 						document.getElementById('smallMessage').innerHTML = "Usually refreshing works, if not, try coming back again later.<br><br>Sorry!";
 						document.getElementById('loader').style.boxShadow = "0px 0px 15px 8px var(--red)";
-						document.getElementById('video').remove();
+						document.getElementById('video').style.display = "none";
 						console.error("Fetch returned with an error or: " + call.error);
 					} else {   
 						const response = await call.json();
@@ -108,7 +110,7 @@
 					document.getElementById('mainMessage').innerHTML = "Failed to get the video!";
 					document.getElementById('smallMessage').innerHTML = "Usually refreshing works, if not, try coming back again later.<br><br>Sorry!";
 					document.getElementById('loader').style.boxShadow = "0px 0px 15px 8px var(--red)";
-					document.getElementById('video').remove();
+					document.getElementById('video').style.display = "none";
 					console.error("Fetch returned with an error of: " + err.message);
 				}
 			}
@@ -142,6 +144,7 @@
 				}
 			}
 		</script>
+		<small style="position:relative;top:25px;">Help support operating costs & improvements: <a href="https://cash.app/$jmovie69" target="_blank" style="color:var(--text);">$JMOVIE69</a></small>
 	</div>
 </body>
 </html>
