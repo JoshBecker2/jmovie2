@@ -88,7 +88,7 @@
 			}
 
 			async function getm3u8(tmdbid, type, s, e) {
-				if (type == "live") // dont you fucking dare. i will find you.
+				if (type == "live")
 					return "http://server_ip:8080/" + urlParams.get("url");
 				else if (type == "movie")
 					ENDPOINT = "http://server_ip:5000/api/movie/" + tmdbid;
