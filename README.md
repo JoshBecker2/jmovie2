@@ -1,4 +1,6 @@
 # jmovie2
+<h1><b>Important:</b> This project is no longer being maintained. It is becoming increasingly harder to find reliable, ad-free sources; I no longer have the time to continuously search for sources that might work for a week or two; and it also was costing me money. I may revisit this project in the future, but there are other things that I would like to explore instead.</h1>
+<p>(Original README)</p>
 <h1>JMovie: No Ads No Viruses, J Movie</h1>
 The new and improved version of JMovie: the no ad, no virus video streamer. In addition to directly retrieving the m3u8 links from the player, I also used <a href="https://github.com/iptv-org">IPTV</a> to include live TV stations! The previous version scraped URLs from popular streaming websites' players (which would either move or contain viruses themselves). This is a better, safer version- despite the time cost of actually loading the page on the back-end and delivering the source to you.  
 
